@@ -22,7 +22,7 @@ import { setupMainFetchlistener } from 'electron-fetch-via-main'
 setupMainFetchlistener()
 ```
 
-In preload scripts
+In preload scripts, expose `fetchViaMain` to renderer
 
 ```
 import { fetchViaMain } from 'electron-fetch-via-main'
