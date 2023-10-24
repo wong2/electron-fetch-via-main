@@ -1,7 +1,7 @@
 {
   "name": "electron-fetch-via-main",
   "description": "Fetch via main process in Electron",
-  "version": "1.0.5",
+  "version": "1.1.1",
   "author": {
     "name": "wong2",
     "email": "wonderfuly@gmail.com",
@@ -13,19 +13,15 @@
   },
   "type": "module",
   "exports": {
-    "./main": {
-      "require": "./dist/main.js",
-      "import": "./dist/main.mjs",
-      "types": "./dist/main.d.ts"
-    },
-    "./preload": {
-      "require": "./dist/preload.js",
-      "import": "./dist/preload.mjs",
-      "types": "./dist/preload.d.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "peerDependencies": {
     "electron": ">=24.0.0"

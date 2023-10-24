@@ -7,20 +7,22 @@ import type {
 } from "./types.js";
 import { streamAsyncIterable } from "./utils.js";
 
-export function setupMainFetch(session?: Session) {
+export function setupMainFetchlistener(session?: Session) {
   ipcMain.on("electron-fetch-via-main", async (event, data) => {
     const port = event.ports[0];
-    const abortController = new AbortController();
-    const fetch = session ? session.fetch : net.fetch;
 
+    const abortController = new AbortController();
     port.on("close", () => abortController.abort());
+
+    const options = { ...data.options, signal: abortController.signal };
 
     let resp: Response;
     try {
-      resp = await fetch(data.url, {
-        ...data.options,
-        signal: abortController.signal,
-      });
+      if (session) {
+        resp = await session.fetch(data.url, options);
+      } else {
+        resp = await net.fetch(data.url, options);
+      }
     } catch (error) {
       port.postMessage({ type: "FETCH_ERROR", error } as FetchErrorMessage);
       port.close();
