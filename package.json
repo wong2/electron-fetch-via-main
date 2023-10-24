@@ -1,0 +1,37 @@
+{
+  "name": "electron-fetch-via-main",
+  "description": "Fetch via main process in Electron",
+  "version": "1.0.5",
+  "author": {
+    "name": "wong2",
+    "email": "wonderfuly@gmail.com",
+    "url": "https://github.com/wong2"
+  },
+  "repository": "wong2/electron-fetch-via-main",
+  "scripts": {
+    "build": "tsup"
+  },
+  "type": "module",
+  "exports": {
+    "./main": {
+      "require": "./dist/main.js",
+      "import": "./dist/main.mjs",
+      "types": "./dist/main.d.ts"
+    },
+    "./preload": {
+      "require": "./dist/preload.js",
+      "import": "./dist/preload.mjs",
+      "types": "./dist/preload.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "electron": ">=24.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
+}
