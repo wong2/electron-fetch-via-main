@@ -1,13 +1,13 @@
-import type { Session } from "electron";
 import { ipcMain, net } from "electron";
 import type {
   FetchErrorMessage,
+  FetchFunction,
   FetchResponseBodyChunkMessage,
   FetchResponseMetadataMessage,
 } from "./types.js";
 import { streamAsyncIterable } from "./utils.js";
 
-export function setupMainFetchlistener(session?: Session) {
+export function setupMainFetchlistener(fetch?: FetchFunction) {
   ipcMain.on("electron-fetch-via-main", async (event, data) => {
     const port = event.ports[0];
 
@@ -18,8 +18,8 @@ export function setupMainFetchlistener(session?: Session) {
 
     let resp: Response;
     try {
-      if (session) {
-        resp = await session.fetch(data.url, options);
+      if (fetch) {
+        resp = await fetch(data.url, options);
       } else {
         resp = await net.fetch(data.url, options);
       }

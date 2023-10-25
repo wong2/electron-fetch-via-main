@@ -29,3 +29,5 @@ export type FetchMessage =
   | FetchResponseMetadataMessage
   | FetchResponseBodyChunkMessage
   | FetchErrorMessage;
+
+export type FetchFunction = (url: string, init: RequestInitSubset) => Promise<Response>;

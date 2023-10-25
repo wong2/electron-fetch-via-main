@@ -1,7 +1,7 @@
 {
   "name": "electron-fetch-via-main",
   "description": "Fetch via main process in Electron",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": {
     "name": "wong2",
     "email": "wonderfuly@gmail.com",
